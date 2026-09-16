@@ -37,7 +37,7 @@
   }
 
   function cleanWord(word) {
-    return word.replace(/[^\p{L}\p{N}]/gu, "");
+    return word.replace(/[^\p{L}\p{N}]/gu, "").toLowerCase();
   }
 
   function getPivotIndex(word) {
