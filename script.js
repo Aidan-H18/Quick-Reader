@@ -29,7 +29,15 @@
   let timerId = null;
 
   function splitWords(text) {
-    return text.trim().split(/\s+/).filter(Boolean);
+    return text
+      .trim()
+      .split(/\s+/)
+      .map(cleanWord)
+      .filter(Boolean);
+  }
+
+  function cleanWord(word) {
+    return word.replace(/[^\p{L}\p{N}]/gu, "");
   }
 
   function getPivotIndex(word) {
@@ -59,10 +67,7 @@
 
   function delayForWord(word) {
     const base = 60000 / wpm;
-    let multiplier = 1;
-    if (/[,;:]$/.test(word)) multiplier = 1.4;
-    if (/[.!?]$/.test(word)) multiplier = 1.8;
-    if (word.length > 8) multiplier += 0.2;
+    const multiplier = word.length > 8 ? 1.2 : 1;
     return base * multiplier;
   }
 
