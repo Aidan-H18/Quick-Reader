@@ -37,7 +37,14 @@
   }
 
   function cleanWord(word) {
-    return word.replace(/[^\p{L}\p{N}]/gu, "").toLowerCase();
+    const withHyphensResolved = word.replace(/-/gu, function (match, offset, str) {
+      const prev = str[offset - 1];
+      const next = str[offset + 1];
+      const prevIsDigit = prev !== undefined && /\p{N}/u.test(prev);
+      const nextIsDigit = next !== undefined && /\p{N}/u.test(next);
+      return prevIsDigit && nextIsDigit ? "-" : "";
+    });
+    return withHyphensResolved.replace(/[^\p{L}\p{N}-]/gu, "").toLowerCase();
   }
 
   function getPivotIndex(word) {
