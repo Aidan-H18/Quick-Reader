@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Reader</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Quick Reader</h1>
+    <p class="subtitle">Paste your text, then read it one word at a time.</p>
+
+    <section class="input-section" id="inputSection">
+      <textarea id="textInput" placeholder="Paste or type your text here..."></textarea>
+      <div class="controls-row">
+        <label class="speed-label" for="wpmInput">
+          Speed:
+          <input type="number" id="wpmInput" min="60" max="1000" step="10" value="300">
+          <span>WPM</span>
+        </label>
+        <button id="startBtn" class="primary-btn">Start Reading</button>
+      </div>
+    </section>
+
+    <section class="reader-section" id="readerSection" hidden>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="word-display" id="wordDisplay">
+        <span class="word" id="wordText">&nbsp;</span>
+      </div>
+
+      <div class="reader-controls">
+        <button id="restartBtn" title="Restart">&#8634;</button>
+        <button id="backBtn" title="Back 10 words">&#9664;&#9664;</button>
+        <button id="playPauseBtn" class="primary-btn" title="Play/Pause">&#10074;&#10074;</button>
+        <button id="fwdBtn" title="Forward 10 words">&#9654;&#9654;</button>
+        <button id="editBtn" title="Edit text">Edit Text</button>
+      </div>
+
+      <div class="speed-row">
+        <label for="speedSlider">Speed: <span id="speedValue">300</span> WPM</label>
+        <input type="range" id="speedSlider" min="60" max="1000" step="10" value="300">
+        <div class="speed-presets">
+          <button class="preset-btn" data-wpm="150">Slow (150)</button>
+          <button class="preset-btn" data-wpm="300">Normal (300)</button>
+          <button class="preset-btn" data-wpm="500">Fast (500)</button>
+          <button class="preset-btn" data-wpm="700">Very Fast (700)</button>
+        </div>
+      </div>
+
+      <div class="status-row">
+        <span id="wordCounter">0 / 0</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
