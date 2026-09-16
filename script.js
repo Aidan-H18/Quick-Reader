@@ -7,7 +7,9 @@
   const readerSection = document.getElementById("readerSection");
 
   const progressFill = document.getElementById("progressFill");
-  const wordText = document.getElementById("wordText");
+  const wordBefore = document.getElementById("wordBefore");
+  const wordPivot = document.getElementById("wordPivot");
+  const wordAfter = document.getElementById("wordAfter");
   const wordCounter = document.getElementById("wordCounter");
 
   const restartBtn = document.getElementById("restartBtn");
@@ -42,25 +44,17 @@
   function renderWord(index) {
     const word = words[index];
     if (!word) {
-      wordText.innerHTML = "&nbsp;";
+      wordBefore.textContent = "";
+      wordPivot.textContent = "";
+      wordAfter.textContent = "";
       return;
     }
     const pivot = getPivotIndex(word);
-    const before = word.slice(0, pivot);
-    const pivotChar = word.charAt(pivot);
-    const after = word.slice(pivot + 1);
-    wordText.innerHTML =
-      escapeHtml(before) +
-      '<span class="pivot">' + escapeHtml(pivotChar) + "</span>" +
-      escapeHtml(after);
+    wordBefore.textContent = word.slice(0, pivot);
+    wordPivot.textContent = word.charAt(pivot);
+    wordAfter.textContent = word.slice(pivot + 1);
     wordCounter.textContent = (index + 1) + " / " + words.length;
     progressFill.style.width = (((index + 1) / words.length) * 100) + "%";
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
   }
 
   function delayForWord(word) {

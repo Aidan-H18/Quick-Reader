@@ -160,25 +160,49 @@ button:hover {
 .word-display::after {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
+  left: 50%;
   width: 1px;
-  background: var(--border);
+  height: 10px;
+  background: var(--pivot);
+  transform: translateX(-50%);
 }
 
 .word-display::before {
-  left: 50%;
+  top: 8px;
 }
 
-.word {
+.word-display::after {
+  bottom: 8px;
+}
+
+.word-frame {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
   font-size: 44px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  white-space: nowrap;
 }
 
-.word .pivot {
+.word-before,
+.word-after {
+  flex: 1 1 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.word-before {
+  text-align: right;
+}
+
+.word-after {
+  text-align: left;
+}
+
+.word-pivot {
+  flex: 0 0 auto;
   color: var(--pivot);
+  white-space: nowrap;
 }
 
 .reader-controls {
